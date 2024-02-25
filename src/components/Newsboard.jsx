@@ -11,8 +11,6 @@ const NewsApp = ({category,searchTerm}) => {
   
   
   const [currentPage, setCurrentPage] = useState(1);
-//   const articlesPerPage = 5; // Number of articles to display per page
-  const apiKey = 'e25cea9aa2574e1a96c1750e1275be68';
   const [darkTheme, setDarkTheme] = useState(false);
   const toggleTheme = () => {
     setDarkTheme((prevTheme) => !prevTheme);
@@ -23,7 +21,7 @@ const NewsApp = ({category,searchTerm}) => {
       setLoading(true)
       try {
         const response = await axios.get(
-          `https://newsapi.org/v2/top-headlines?country=in&category=${category}&q=${searchTerm}&apiKey=${apiKey}&page=${currentPage}`
+          `https://newsapi.org/v2/top-headlines?country=in&category=${category}&q=${searchTerm}&apiKey=${import.meta.env.VITE_API_KEY}&page=${currentPage}`
         );
         setNews(response.data.articles);
         // console.log(response.data.articles)
